@@ -1,11 +1,8 @@
 import { useState } from 'react';
-import { Row, Col, Input, Button, message, Space } from 'antd';
+import {  message } from 'antd';
 import extract from './utils/extract';
 import './style.css'
 
-const { TextArea } = Input;
-
-const buttonStyle = {display: 'flex', justifyContent: 'center', alignItems: 'center'}
 
 function App() {
   const [str, setStr] = useState('');
