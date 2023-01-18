@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {  message } from 'antd';
+import message from 'antd/es/message';
 import extract from './utils/extract';
 import './style.css'
 
