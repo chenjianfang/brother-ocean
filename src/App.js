@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Row, Col, Input, Button, message, Space } from 'antd';
 import extract from './utils/extract';
+import './style.css'
 
 const { TextArea } = Input;
 
@@ -8,7 +9,8 @@ const buttonStyle = {display: 'flex', justifyContent: 'center', alignItems: 'cen
 
 function App() {
   const [str, setStr] = useState('');
-  const [extractStr, setExtractStr] = useState('');
+  const [list, setList] = useState([]);
+  const [repeat, setRepeat] = useState([]);
 
   const extractClick = async () => {
     if (!str) {
@@ -30,36 +32,38 @@ function App() {
         }
       })
 
-      resultList = resultList.join('\n');
-      repeatList = repeatList.join('\n');
-
-      data = `${resultList}`;
-      if (repeatList.length) {
-        data += `\n\n\n重复项：\n${repeatList}`
-      }
+      setList(resultList);
+      setRepeat(repeatList);
 
       message.success('提取成功!');
+    } else {
+      message.error(data);
     }
-
-    setExtractStr(data);
   }
 
   return (
-    <div className="App" style={{margin: '20px'}}>
-      <Row justify="space-around" align="middle">
-        <Col span={15}>
-          <TextArea rows={30} value={str} onChange={(e) => setStr(e.target.value)} />
-        </Col>
-        <Col span={2} style={buttonStyle}>
-          <Space size="small" direction="vertical">
-            <Button type="primary" onClick={extractClick}>提取</Button>
-          </Space>
-        </Col>
-        <Col span={7}>
-          <TextArea rows={30} value={extractStr} onChange={(e) => setExtractStr(e.target.value)}  />
-        </Col>
-      </Row>
-    </div>
+    <>
+      一直免费。使用<a href="https://softforspeed.51xiazai.cn/down/ChromeSetup.exe">谷歌浏览器</a>打开
+      <div className="app">
+        <textarea className="showBox" rows={30} value={str} onChange={(e) => setStr(e.target.value)} />
+        <div className="button" onClick={extractClick}>提取</div>
+        <div className="showBox">
+          {
+            list.map((item, index) => (<p key={item}>{item}</p>))
+          }
+          {
+            repeat.length ? (
+              <div className='mt-10'>
+                重复项:
+                {
+                  repeat.map((item) => (<p key={item}>{item}</p>))
+                }
+              </div>
+            ): null
+          }
+        </div>
+      </div>
+    </>
   );
 }
 
