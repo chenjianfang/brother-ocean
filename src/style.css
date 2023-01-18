@@ -1,6 +1,11 @@
 *{
   margin: 0;
   padding: 0;
+  font-family: inherit;
+  font-size: 14px;
+}
+textarea, input{
+  outline: none;
 }
 .mt-10{
   margin-top: 10px;
@@ -35,4 +40,14 @@ p{
   height: 100%;
   padding: 10px;
   overflow: auto;
+}
+.showBox:hover{
+  border: 1px solid rgb(64, 169, 255);
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, .2);
+  outline: 0;
+}
+.showBox-active{
+  border: 1px solid rgb(64, 169, 255);
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, .2);
+  outline: 0;
 }
