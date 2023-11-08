@@ -1,6 +1,6 @@
 export default function extract(str) {
 
-  let matchList = str.match(/<SN>[^S]*(?=<\/SN>)/g)
+  let matchList = str.match(/<SN>[0-9a-zA-Z<>|/]*(?=<\/SN>)/g)
 
   if (!matchList) {
     return '没有匹配到<SN>xxx</SN>格式数据';
